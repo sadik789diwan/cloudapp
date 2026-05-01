@@ -1,4 +1,4 @@
-name: Spring Boot CI (Maven)
+name: Spring Boot CI (Maven + Docker)
 
 on:
   push:
@@ -22,4 +22,14 @@ jobs:
           cache: 'maven'
 
       - name: Build with Maven
-        run: mvn clean install
+        run: mvn clean install -DskipTests
+
+      - name: Build and Push Docker Image
+        if: github.event_name == 'push'
+        uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          image: sadik789diwan/cloudapp
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          tags: latest,${{ github.run_number }}
