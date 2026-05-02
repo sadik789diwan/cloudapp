@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: springboot-app
+  name: cloudapp-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: springboot-app
+      app: cloudapp
   template:
     metadata:
       labels:
-        app: springboot-app
+        app: cloudapp
     spec:
       containers:
-      - name: springboot-app
-        image: sadik789diwan/cloudapp:latest
-        ports:
-        - containerPort: 8080
+        - name: cloudapp
+          image: sadik789diwan/cloudapp:latest
+          ports:
+            - containerPort: 8080
