@@ -1,5 +1,6 @@
 package com.bgmpl.cloudapp.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +22,11 @@ public class DemoController {
         dataMap.put(3, "Without deleting pods checking whether its deploying or not");
     }
 
+    @Value("${app.custom-message}")
+    private String welcomeMessage;
+    @Value("${app.status-code}")
+    private int statusCode;
+
     @GetMapping("hello")
     public String hello() {
         return "Hello from Spring Boot!";
@@ -41,6 +47,16 @@ public class DemoController {
             response.add(record);
 
         });
+        return response;
+    }
+
+    @GetMapping("/message")
+    public Map<String, Object> getMessageFromProperties() {
+        Map<String, Object> response = new HashMap<>();
+        response.put("property_message", welcomeMessage);
+        response.put("code", statusCode);
+        response.put("source", "application.properties");
+
         return response;
     }
 }
