@@ -16,8 +16,14 @@ spec:
         - name: cloudapp
           image: sadik789diwan/cloudapp:latest
           imagePullPolicy: Always
+
           ports:
             - containerPort: 8080
+
+          # 🔐 Inject Secret here
+          envFrom:
+            - secretRef:
+                name: cloudapp-secret
 
           resources:
             requests:
