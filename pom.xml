@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.bgmpl</groupId>
 	<artifactId>cloudapp</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name/>
 	<description/>
 	<url/>
@@ -42,6 +42,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>cloudapp</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

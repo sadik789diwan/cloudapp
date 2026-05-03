@@ -14,6 +14,7 @@ spec:
     spec:
       containers:
         - name: cloudapp
-          image: sadik789diwan/cloudapp:latest
+          image: sadik789diwan/cloudapp:latest   # use new tag
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
