@@ -86,3 +86,84 @@ docker volume prune -f
 docker pull sadik789diwan/cloudapp:latest
 2. Run the container
 docker run -p 8080:8080 sadik789diwan/cloudapp:latest
+
+
+
+Available credits ₹18,909.75
+
+az login
+az group create --name rg-aks-demo --location centralindia
+az aks create --resource-group rg-aks-demo --name aks-demo --node-count 1 --enable-addons monitoring --generate-ssh-keys --node-vm-size Standard_B2s_v2
+az aks get-credentials --resource-group rg-aks-demo --name aks-demo --overwrite-existing
+kubectl get nodes
+
+
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+kubectl delete pod -l app=cloudapp
+kubectl get pods
+kubectl get endpoints
+
+kubectl delete pod -l app=cloudapp
+kubectl exec -it cloudapp-deployment-75447ccccb-zl5tv -- printenv
+
+kubectl apply -f deployment.yaml
+kubectl delete pod -l app=cloudapp
+
+kubectl apply -f deployment.yaml
+kubectl get pods
+kubectl get endpoints
+kubectl describe pod cloudapp-deployment-5d68c9c47b-78n7l
+kubectl exec -it cloudapp-deployment-7cfdd7dc94-hrns9 -- ls /app
+
+
+kubectl port-forward service/cloudapp-service 8080:80 - To run locally
+kubectl get svc
+
+
+kubectl rollout restart deployment cloudapp-deployment
+
+docker pull sadik789diwan/cloudapp:13
+docker run -p 8080:8080 sadik789diwan/cloudapp:latest
+
+Using Azure CLI (Fastest)
+az group delete --name rg-aks-demo --yes --no-wait
+
+What to delete	Command
+Everything	az group delete ✅
+Only AKS	az aks delete
+
+az group delete --name rg-aks-demo --yes --no-wait
+
+
+docker pull sadik789diwan/cloudapp:latest
+docker run -p 8080:8080 sadik789diwan/cloudapp:latest
+
+
+docker build -t cloudapp-test .
+docker run -p 8080:8080 cloudapp-test
+
+
+docker build -t sadik789diwan/cloudapp:working .
+docker push sadik789diwan/cloudapp:working
+
+
+image: sadik789diwan/cloudapp:working
+imagePullPolicy: Always
+
+kubectl apply -f deployment.yaml
+kubectl delete pod -l app=cloudapp
+
+1. Remove All Stopped Containers
+docker container prune -f
+2. Remove All Unused Images
+docker image prune -a -f
+3. Remove Everything (Most Powerful)
+docker system prune -a --volumes -f
+6. Remove Volumes (Optional)
+docker volume prune -f
+
+1. Pull the image
+docker pull sadik789diwan/cloudapp:latest
+2. Run the container
+docker run -p 8080:8080 sadik789diwan/cloudapp:latest
