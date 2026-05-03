@@ -18,6 +18,7 @@ public class DemoController {
     static {
         dataMap.put(1, "AKS deployment Success");
         dataMap.put(2, "Github Actions Pipeline Active");
+        dataMap.put(3, "Without deleting pods checking whether its deploying or not");
     }
 
     @GetMapping("hello")
